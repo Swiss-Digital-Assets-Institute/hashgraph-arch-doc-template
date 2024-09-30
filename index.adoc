@@ -1,0 +1,17 @@
+= Managed Transaction Gateway service: Architecture Overview
+:doctype: book
+:revnumber: 1.1
+:revdate: {localdate}
+:toc:
+:toc-title: Table of Contents
+:sectnums:
+
+include::01_introduction_and_goals/index.adoc[]
+
+include::02_architecture/index.adoc[]
+
+include::03_concepts/index.adoc[]
+
+include::04_architecture_decisions/index.adoc[]
+
+// include::05_risks_and_technical_debt/index.adoc[]

@@ -1,0 +1,28 @@
+services:
+
+  build-html:
+    image: "asciidoctor/docker-asciidoctor"
+    pull_policy: "if_not_present"
+    volumes:
+      - ./:/documents
+    command:
+      - "asciidoctor"
+      - "-r"
+      - "asciidoctor-diagram"
+      - "-a"
+      - "toc2"
+      - "/documents/index.adoc"
+      - "-o"
+      - "/documents/build-html/index.html"
+
+  build-pdf:
+    image: "asciidoctor/docker-asciidoctor"
+    volumes:
+      - ./:/documents
+    command:
+      - "asciidoctor-pdf"
+      - "-r"
+      - "asciidoctor-diagram"
+      - "/documents/index.adoc"
+      - "-o"
+      - "/documents/build-pdf/index.pdf"

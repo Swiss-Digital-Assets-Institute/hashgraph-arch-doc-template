@@ -1,0 +1,24 @@
+// tag::developer[]
+=== Quality Goals
+
+////
+[NOTE]
+risks, impact assessment and remediation list. There will be a Project Risk list which will be kept by the PM, probably in Confluence. These risks are only the ones impacting code and which can be remediated by the development team or have a direct impact on the development team
+////
+
+[cols="1,1,4,4", id=quality-goals, options="header"]
+|===
+|ID |Severity |Description |Remediation
+|[[R1]]R1
+|High
+|The expected performance might make the system fail commercially
+|Conduct research early on to find an efficient solution
+
+|[[R2]]R2
+|Low
+|Users might lose their keys and not be able to login
+|Integrate with a recovery tool such as link:https://derecalliance.org/[DeRec]
+
+|===
+// end::developer[]
+

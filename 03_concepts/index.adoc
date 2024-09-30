@@ -1,0 +1,9 @@
+== Cross-cutting Concepts
+
+include::01_security_concepts.adoc[]
+
+include::02_performance_optimisation.adoc[]
+
+include::03_monitoring_logging.adoc[]
+
+include::04_data_protection.adoc[]

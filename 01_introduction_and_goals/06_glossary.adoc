@@ -1,0 +1,20 @@
+=== Glossary
+
+
+////
+The glossary explains terminology and allows to reference acronyms easily. Copy the `Link` example and paste it in your document to create a link to the glossary entry. Alternatively, you can `search and replace` the `terms` once in a while to make sure they are referenced. It is the responsibility of the reviewer to make sure terms are referenced correctly
+////
+
+
+[cols="1,8", id=stakeholders, options="header"]
+|===
+|Term |Description
+
+|[[DLT]]DLT
+|Decentralised Ledger Technology
+|===
+
+////
+to reference a TERM in the documentation, you have to use the following syntax
+<<../01_introduction_and_goals/06_glossary.adoc#DLT, DLT>>
+////

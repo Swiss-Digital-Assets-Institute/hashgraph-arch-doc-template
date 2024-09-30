@@ -1,0 +1,10 @@
+=== Security Concept
+[NOTE]
+====
+Add any security related decisions. Here are a few examples
+
+- All external communication is encrypted using TLS 1.3
+- API authentication uses OAuth 2.0 with JWT tokens
+- Sensitive data in the database is encrypted at rest
+- Regular security audits and penetration testing are conducted
+====

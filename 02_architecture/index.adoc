@@ -1,0 +1,45 @@
+== Architecture
+
+[NOTE]
+====
+List key constraints that influence architectural decisions. Keep this list updated as project constraints evolve.
+====
+
+// tag::architect[]
+=== Technical Constraints
+
+- Must integrate with Hedera network
+- Must comply with financial regulations and data protection laws
+- Must support multiple wallet types (Signing, Execution, Refill, Cold)
+- Must implement API key-based authentication
+// end::architect[]
+
+// tag::manager[]
+=== Organizational Constraints
+- Development team is distributed across multiple time zones
+- Must align with company's existing DevOps practices
+- Limited budget and timeline for initial release
+// end::manager[]
+
+// tag::developer[]
+=== Conventions
+- Use of microservices architecture
+- Containerization of all services
+- Adherence to RESTful API design principles
+- Comprehensive unit and integration testing
+// end::developer[]
+
+[NOTE]
+====
+This section presents the static structure of the system using C4 model diagrams. Each level provides increasing detail about the software architecture. Update these diagrams when adding, removing, or significantly changing system components.
+====
+
+include::01_system_context.adoc[]
+
+include::02_container_view.adoc[]
+
+include::03_component_view.adoc[]
+
+include::04_runtime_view.adoc[]
+
+include::05_deployment_view.adoc[]

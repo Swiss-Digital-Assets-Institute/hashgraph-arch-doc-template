@@ -1,0 +1,13 @@
+=== Stakeholders
+
+[cols="1,2,3", id=stakeholders, options="header"]
+|===
+|Role |Contact |Expectations
+
+|CFO |First Lastname |Viable pricing model and revenue generation
+|Head of Engineering |First Lastname  |Technical feasibility and performance
+|Product Owner |First Lastname  |Feature completeness and user satisfaction
+|Project Manager |First Lastname  |On-time delivery within budget
+|Tech Lead |First Lastname  |Code quality and technical implementation
+|Architect |First Lastname  |System design and architectural decisions
+|===

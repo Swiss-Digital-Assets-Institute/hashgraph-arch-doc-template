@@ -1,0 +1,162 @@
+=== [[components]] Component Diagram - Frontend
+
+The purpose of the Application Admin FE is to manage the currently logged-in users data, subscriptions and API keys while the Dashboard Service FE allows the THA Admin the management of all users and provide him with an overview of the platforms usage.
+
+[plantuml, target=images/fe_component, format=svg]
+----
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+Container_Ext(alb, "Amazon Load Balancer", "Handles incoming requests")
+
+System_Boundary(mtg, "The Application") {
+Container_Boundary(mtg_admin_fe, "Admin FE") {
+Component(login_operator, "Login Service", "Allows the user to log on to the system")
+Component(api_key, "API Key Generator", "Allows the user to create a new shiny thing")
+Component(acc_mngmt, "Account Manager", "Allows to maintain the user account")
+Component(sub_mngmt, "Subscription Manager", "Allows to maintain the subscription of the user")
+Component(billing_info, "Billign Information", "Allows to view the produced costs for each managed service by the user")
+}
+
+Container_Boundary(db_service_fe, "Dashboard Service FE") {
+Component(login_admin, "Login Service", "Allows the user to log on to the system")
+Component(admin_acc_mngmt, "Account Manager", "Allows to maintain customer and user accounts")
+Component(dashboard, "Dashboard", "Allows to check the billing information per product for a given customer and their executed transactions")
+}
+
+Container_Ext(mtg_be, "Application Backend", "Manages the backend operations of the Application Admin FE")
+Container_Ext(db_be, "Dashboard Backend", "Manages the backend operations of the Application Admin FE")
+
+Rel(alb, mtg_admin_fe, "Routes traffic to")
+Rel(alb, db_service_fe, "Routes traffic to")
+
+Rel(mtg_admin_fe, mtg_be, "Sends request to")
+Rel(db_service_fe, db_be, "Sends request to")
+}
+@enduml
+----
+
+==== Login Operator
+[NOTE]
+Describe what the component does using prose. The diagrams should be put in the runtime view
+
+==== API Key Generator
+[NOTE]
+Describe what the component does using prose. The diagrams should be put in the runtime view
+
+==== Account Manager
+[NOTE]
+Describe what the component does using prose. The diagrams should be put in the runtime view
+
+==== Subscription Manager
+[NOTE]
+Describe what the component does using prose. The diagrams should be put in the runtime view
+
+==== Billing Information
+[NOTE]
+Describe what the component does using prose. The diagrams should be put in the runtime view
+
+==== Login Admin
+[NOTE]
+Describe what the component does using prose. The diagrams should be put in the runtime view
+
+==== Admin Account Manager
+[NOTE]
+Describe what the component does using prose. The diagrams should be put in the runtime view
+
+==== Dashboard
+[NOTE]
+Describe what the component does using prose. The diagrams should be put in the runtime view
+
+=== Component Diagram - Backend
+
+The Application Backend takes the requests from both frontend containers. Additionally, it exposes endpoints that allow a technical user to send requests.
+The Dashboard Backend only serves the purposes of the Dashboard Service FE.
+
+[plantuml, target=images/be_components, format=svg]
+----
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+System_Boundary(aws, "AWS") {
+System_Boundary(mtg, "The Application") {
+Component_Ext(mtg_admin_fe, "Application Admin FE", "User frontend")
+Component_Ext(db_service_fe, "Dashboard Service FE", "THA admin frontend")
+
+Container_Boundary(mtg_be, "Application Backend") {
+Component(api_key_generator, "API Key Generator", "Creates new API keys and stores the hash of it within the Application DB")
+Component(tx_gateway, "Transaction Gateway", "Allows operators to send raw transactions to exposed REST endpoints that will be signed with their private key and propagated via the mirror node")
+Component(acc_mngmt_service, "Account Manager", "Exposes REST endpoints to maintain the user account")
+Component(sub_mngmt_service, "Subscription Manager", "Exposes REST endpoints to maintain the subscription of the user")
+Component(billing_mngmt_service, "Billing Service", "Exposes REST endpoints to retrieve the produced costs per managed service by the user")
+}
+
+Container_Boundary(db_be, "Dashboard Backend") {
+Component(admin_acc_mngmt_service, "Account Manager", "Exposes REST endpoints to maintain customer and user accounts")
+Component(dashboard_service, "Dashboard", "Exposes REST endpoints to retrieve the produced costs per managed service by the user and their executed transactions")
+}
+
+Component_Ext(vault1, "Hashicorp Vault for Application Backend", "The vault instance which stores credentials and keys for the Application backend container")
+Component_Ext(vault2, "Hashicorp Vault for Dashboard Backend", "The vault instance which stores credentials and keys for the Dashboard backend container")
+ComponentDb_Ext(mtg_db, "Application Database", "The database used by the Application backend")
+ComponentDb_Ext(db_db, "Dashboard Database", "The database used by the Dashboard Service Backend")
+}
+
+Component_Ext(cognito, "Cognito", "The IAM solution provided by AWS which serves our user management")
+
+}
+
+System_Boundary(hedera, "Hedera") {
+Container_Ext(mirror_node, "Mirror Node", "The mirror node used to propagate the Applications transactions")
+}
+
+Rel(mtg_admin_fe, mtg_be, "Sends REST request to")
+Rel(db_service_fe, db_be, "Sends REST request to")
+
+Rel(mtg_be, vault1, "Sends REST request to")
+Rel(mtg_be, mtg_db, "Sends SQL command to")
+Rel(mtg_be, mirror_node, "Sends signed transaction to")
+Rel(mtg_be, cognito, "Sends REST request to")
+
+Rel(db_be, vault2, "Sends REST request to")
+Rel(db_be, cognito, "Sends REST request to")
+Rel(db_be, db_db, "Sends SQL command to")
+Rel(db_be, mtg_db, "Sends REST request to")
+
+@enduml
+----
+
+==== API Key Generator
+[NOTE]
+Describe what the component does using prose. The diagrams should be put in the runtime view
+
+==== Transaction Gateway
+[NOTE]
+Describe what the component does using prose. The diagrams should be put in the runtime view
+
+==== Account Manager
+[NOTE]
+Describe what the component does using prose. The diagrams should be put in the runtime view
+
+==== Subscription Manager
+[NOTE]
+Describe what the component does using prose. The diagrams should be put in the runtime view
+
+==== Billing Service
+[NOTE]
+Describe what the component does using prose. The diagrams should be put in the runtime view
+
+==== Dashboard
+[NOTE]
+Describe what the component does using prose. The diagrams should be put in the runtime view
+
+==== Hashicorp Vault
+[NOTE]
+Describe what the component does using prose. The diagrams should be put in the runtime view
+
+==== Application Database
+[NOTE]
+Describe what the component does using prose. The diagrams should be put in the runtime view
+
+==== Dashboard Database
+[NOTE]
+Describe what the component does using prose. The diagrams should be put in the runtime view

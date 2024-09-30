@@ -1,0 +1,11 @@
+=== Monitoring and Logging
+[NOTE]
+====
+Add any design decision on how monitoring and logging is done and where the logs are kept and for how long
+
+- Centralized logging using the ELK (Elasticsearch, Logstash, Kibana) stack
+- Prometheus for metrics collection and Grafana for visualization
+- Automated alerting system for critical issues
+- Detail the appropriate logging solution for you library and framework e.g. `log4j`
+- Describe the dashboards which allow to monitor the application. e.g. Prometeus and Grafana and how they are set up and the data that is presented
+====

@@ -1,0 +1,23 @@
+== Introduction and Goals
+
+////
+[NOTE]
+====
+This section provides a high-level overview of the project goals and key requirements. Keep it concise and business-focused.
+====
+////
+
+// tag::manager[]
+=== Executive Summary
+The Managed Transaction Gateway provides a managed solution to interact with the Hedera network without the need to handle HBAR or pay fees directly. This service includes a Service Level Agreement (SLA) and an administration dashboard for Customers, along with a free implementation for Developers. Pricing is based on transaction volume to meet the specific needs of each customer and the terms of the purchased plan.
+// end::manager[]
+
+include::01_stakeholders.adoc[]
+
+include::02_requirements_overview.adoc[]
+
+include::03_quality_goals.adoc[]
+
+include::04_features_traceability_matrix.adoc[]
+
+include::05_risks_tech-debt.adoc[]

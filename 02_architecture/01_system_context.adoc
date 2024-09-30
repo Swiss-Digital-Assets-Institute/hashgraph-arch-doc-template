@@ -1,0 +1,70 @@
+=== System Context
+
+[NOTE]
+This diagram shows the systems that are communicating and interacting within the scope of the Managed Transaction Gateway.
+The example below gives a view on the different types of components
+
+// tag::architect[]
+[plantuml,target=images/level1,format=svg]
+----
+
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+LAYOUT_WITH_LEGEND()
+
+title System Context diagram for the Application
+
+Person_Ext(technicalUser, "User who is not managed by Application", "Long description of what the user will try to achieve with the Application")
+
+Enterprise_Boundary(c0, "THA") {
+Person(customer, "Customer", "A customer of THA that wants to use the Application and do some awesome stuff with it")
+Person(admin, "Admin", "A THA employee that serves as an admin and onboards customers.")
+
+System(frontend, "Application Frontend", "Allows users to interact with the application and the admins to manage it")
+System(backend, "Application Backend", "Implementation of the persistence layer and some of the features of the application")
+
+System_Ext(vault, "Hashicorp Vault", "The KMS of choice that holds the secrets of the application and can sign messages with private keys. Explain what it's used for")
+}
+
+System_Ext(node, "Hedera Hashgraph Node", "Hedera is the DLT network which the customer wants to interact with. The node serves as a gateway to the network.")
+
+System_Ext(hedera, "Hedera Hashgraph", "Hedera is a fully open source public distributed ledger that utilizes the fast, fair, and secure hashgraph consensus. Its network services include Solidity-based smart contracts, as well as native tokenization and consensus services used to build decentralized applications.")
+
+Rel(admin, frontend, "Uses to onboard new customers")
+Rel(customer, frontend, "Uses for visualized information")
+Rel(frontend, backend, "Requests actions or information")
+Rel(backend, frontend, "Returns responses to the requests")
+Rel(technicalUser, backend, "Sends REST requests and receives responses")
+Rel(backend, vault, "Requests to sign raw transaction payload")
+Rel(vault, backend, "Returns signed transaction payload")
+Rel(backend, node, "Hands over signed transaction payload")
+Rel(node, hedera, "Broadcasts transaction on the network")
+
+@enduml
+
+----
+
+==== Admin User
+[NOTE]
+Description of what the Admin User does, which features they use and what for. Any feature listed here should be described in the <<../01_introduction_and_goals/04_features_traceability_matrix.adoc#ftm, features>> list
+
+==== Customer
+[NOTE]
+Same as for the other user
+
+==== Application Frontend
+[NOTE]
+This container represents any way to interact with the system. This can include a Web App, Mobile App, Native App and definitely includes the wallet. Here we describe what the UI enables, who will use it and what <<../01_introduction_and_goals/04_features_traceability_matrix.adoc#ftm, features>> are made available through that container. These should be listed even if they're the same as for the users.
+
+An alternative to listing the features here, is to reference the <<03_component_view.adoc#components>, components view>> to the specific section for the container
+
+==== Application Backend
+[NOTE]
+Overview of the backend and links to the relevant <<05_deployment_view.adoc#_deployment_view, deployment>> and ADR
+
+==== External containers
+[NOTE]
+The external containers should be described as to why they are used, with a reference to the relevant ADR
+
+

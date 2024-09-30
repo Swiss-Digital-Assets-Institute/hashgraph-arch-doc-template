@@ -1,0 +1,25 @@
+=== Features Traceability Matrix (RTM)
+
+////
+[NOTE]
+====
+This matrix serves as the central point for tracing features. A feature is not a User Story. In the example below, the feature is "Secure Login" but a User Story is something a user would access the system for.
+
+E.g.: As an Administrator of the system I want to assign roles to users to manage the features they have access to
+
+Update this matrix when adding new features or when making significant changes to architectural components, quality attributes, architecture decisions, or when identifying new risks or technical debt items.
+====
+////
+
+[cols="1,3,2,2,2,2", id=ftm, options="header"]
+|===
+|ID |Feature |Requierments |Quality Attributes |Arch. Decisions |Risks/Tech Debt
+|F1
+|When a user accesses the system, they need to securely authenticate, so that they can access their personalized data and functionalities and their information can be kept private.
+|<<02_requirements_overview.adoc#R1, Web3 Auth>>
+|<<03_quality_goals.adoc#Q2, Security>>
+|<<../04_architecture_decisions/adr-001-my-project.adoc#_adr_001_description_of_the_architecture_decision_record, Security Architecture>>
+|<<05_risks_tech-debt.adoc#R2, Key Recovery>>
+
+
+|===

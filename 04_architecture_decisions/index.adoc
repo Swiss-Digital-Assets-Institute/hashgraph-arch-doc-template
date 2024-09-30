@@ -1,0 +1,58 @@
+== Architecture Decisions
+
+:1: https://learn.microsoft.com/en-us/azure/well-architected/architect-role/architecture-decision-record
+:2: https://adr.github.io
+:3: https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/adr-process.html
+:4: https://endjin.com/blog/2023/07/architecture-decision-records
+
+Architecture Decision Records (ADRs) serve several important purposes and follow a specific process. Here's an explanation of their purpose and process:
+
+Purpose of ADRs:
+
+1. Document key decisions: ADRs capture significant architectural decisions made during the design and development of a software system {1}[1] {2}[2].
+
+2. Provide context: They explain the context, rationale, and consequences of each decision {3}[3].
+
+3. Create a decision log: ADRs collectively form a decision log that provides project context and detailed implementation information {3}[3].
+
+4. Facilitate communication: They help team members understand and communicate design choices {4}[4].
+
+5. Support future reference: ADRs serve as a reference for code and architectural reviews {3}[3].
+
+6. Track evolution: They allow documentation to reflect specific states of a system over time {4}[4].
+
+7. Evidence thinking process: ADRs demonstrate the reasoning behind decisions, which can be valuable for audits or future team members {4}[4].
+
+Process of creating and using ADRs:
+
+1. Identification: Recognize an architecturally significant decision that needs to be made {1}[1] {3}[3].
+
+2. Authorship: An team member (ADR owner) creates a new ADR document {3}[3].
+
+3. Content creation: The ADR owner fills in the required sections, typically including:
+- Title
+- Status (e.g., proposed, accepted, rejected)
+- Context and problem statement
+- Decision drivers
+- Considered options
+- Decision outcome
+- Pros and cons
+- Mitigation strategy {4}[4]
+
+4. Review: The team reviews the proposed ADR, often using a pull request process in a version control system {3}[3] {4}[4].
+
+5. Revision: If necessary, the ADR owner makes revisions based on team feedback {3}[3].
+
+6. Acceptance or Rejection: The team decides to accept, reject, or request further work on the ADR {3}[3].
+
+7. Finalization: If accepted, the ADR owner updates the status, adds a timestamp, version, and list of stakeholders {3}[3].
+
+8. Storage: ADRs are typically stored as plain text (often Markdown) files in a version control system, usually in a `/docs/adrs` folder within the project repository {4}[4].
+
+9. Ongoing use: The team refers to ADRs during development, code reviews, and future decision-making processes {3}[3].
+
+10. Superseding: If a decision changes, a new ADR is created to supersede the old one, rather than modifying the original ADR {3}[3].
+
+By following this process, teams can maintain a clear, versioned history of important decisions throughout a project's lifecycle, improving communication, understanding, and long-term maintainability of the software architecture.
+
+include::adr-001-my-project.adoc[]

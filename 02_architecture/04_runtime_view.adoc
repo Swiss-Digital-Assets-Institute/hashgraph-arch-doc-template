@@ -1,0 +1,10 @@
+=== Runtime View
+
+[NOTE]
+====
+This documentation is intended for developers and architects to help them understand how the application has been implemented and the functions implemented in each component and how the components interact.
+
+This document should contain Sequence diagrams to show the sequence of events to implement a particular feature. It should also contain state diagrams, if pertinent, to show the different states of information in the processes.
+
+It can contain any other details (class diagrams, ERM and more) which would help a developer understand the system. The deployment is described in the deployment view
+====

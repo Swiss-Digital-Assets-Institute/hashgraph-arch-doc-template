@@ -1,0 +1,21 @@
+// tag::architect[]
+=== Requirements Overview
+
+////
+[NOTE]
+====
+This section outlines high-level technical requirements. Each entry represents a key capability of the system. Update this section as new high-level requirements emerge or existing ones change significantly.
+Most of these requirements will probably be from an ADR so there is an example on how to include one with proper formatting
+====
+////
+
+[cols="1,8", id=requirements, options="header"]
+|===
+|ID | Requirement
+|[[R1]]R1 | The system shall use Web3 Auth for authentication
+|[[R2]]R2 | Hedera Smart Contract Service will be used for smart-contract deployments
+|R3 a|
+include::../04_architecture_decisions/adr-001-my-project.adoc[]
+|===
+
+// end::architect[]

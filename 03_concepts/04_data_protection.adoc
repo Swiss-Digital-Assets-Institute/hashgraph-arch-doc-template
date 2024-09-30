@@ -1,0 +1,11 @@
+=== Data Protection and Privacy
+[NOTE]
+====
+Detail the data protection regulation that is relevant for your project. If you keep data in a smart-contract, specify why it is OK to do so for the data stored in the smart-contract
+
+- GDPR and CCPA compliant data handling processes
+- Data anonymization for analytics purposes
+- Data anonymization for replicating the production data in Production Tests
+- Regular data protection impact assessments (DPIA)
+
+====

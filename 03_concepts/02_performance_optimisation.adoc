@@ -1,0 +1,8 @@
+=== Performance Optimization
+[NOTE]
+====
+Add any performance enhancing design decisions. Here are a few examples
+- Caching layer implemented using Redis for frequently accessed data
+- Database query optimization and indexing
+- Asynchronous processing for non-critical operations
+====

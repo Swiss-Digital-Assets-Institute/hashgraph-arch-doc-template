@@ -1,0 +1,10 @@
+== Deployment View
+
+[NOTE]
+====
+This diagram shows how the system is deployed. Update it when changing the deployment architecture or moving to new infrastructure.
+
+It should contain the description about how the infrastructure is set up as well as how it is used in the CI/CD pipeline. Which tests are run in which environment, what causes a deployment to fail and the criteria for success.
+
+This is also the place to document the branching strategy and which branches are deployed to what environment
+====

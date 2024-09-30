@@ -1,0 +1,15 @@
+=== ADR 001: Description of the Architecture Decision Record
+
+*Status*: Proposed;Reviewed;Accepted;Rejected
+
+*Context*:
+[NOTE]
+Describe what the architecture proposal is about and why you believe it should be accepted
+
+*Decision:*
+[NOTE]
+This should remain empty for the first version. In order to elicit a decision the ADR should be proposed in a PR so that a discussion can take place
+
+*Consequences*:
+[NOTE]
+Once a decision has been made (the PR is ready to be merged), document the consequences of implementing this decision
