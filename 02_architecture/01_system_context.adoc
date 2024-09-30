@@ -57,7 +57,7 @@ Same as for the other user
 [NOTE]
 This container represents any way to interact with the system. This can include a Web App, Mobile App, Native App and definitely includes the wallet. Here we describe what the UI enables, who will use it and what <<../01_introduction_and_goals/04_features_traceability_matrix.adoc#ftm, features>> are made available through that container. These should be listed even if they're the same as for the users.
 
-An alternative to listing the features here, is to reference the <<03_component_view.adoc#components>, components view>> to the specific section for the container
+An alternative to listing the features here, is to reference the <<03_component_view.adoc#components, components view>> to the specific section for the container
 
 ==== Application Backend
 [NOTE]
