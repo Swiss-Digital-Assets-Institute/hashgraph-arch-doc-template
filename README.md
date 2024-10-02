@@ -6,13 +6,11 @@ This template repo is meant to be used as a basis for writing architecture docum
 In the root folder of your repo
 
 ```shell
-mkdir docs
+git clone git@github.com:Swiss-Digital-Assets-Institute/hashgraph-arch-doc-template.git docs
+rm -rf docs/.git
 cd docs
-git remote add docs git@github.com:Swiss-Digital-Assets-Institute/hashgraph-arch-doc-template.git 
-git fetch docs
-git merge docs/main --allow-unrelated-histories
-git commit -m "Merged second repository"
-git remote remove docs
+git add .
+git commit -m "documentation template"
 ```
 
 ## The above section can be deleted after the merge
