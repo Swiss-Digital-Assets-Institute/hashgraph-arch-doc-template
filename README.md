@@ -55,16 +55,32 @@ We use a `docker-compose-arch.yml` file to define the build process for both HTM
 
 ### To generate HTML:
 
+#### For Docker desktop version for Windows and Mac
+
 ```sh
 docker compose -f docker-compose-arch.yml up --no-recreate build-html
+```
+
+#### For Docker on Linux
+
+```sh
+docker-compose -f docker-compose-arch.yml up --no-recreate build-html
 ```
 
 This will generate `index.html` in the `docs/architecture/build-html` directory.
 
 ### To generate PDF:
 
+#### For Docker desktop version for Windows and Mac
+
 ```sh
 docker compose -f docker-compose-arch.yml up --no-recreate build-pdf
+```
+
+#### For Docker on Linux
+
+```sh
+docker-compose -f docker-compose-arch.yml up --no-recreate build-pdf
 ```
 
 This will generate `index.pdf` in the `docs/architecture/build-pdf` directory.
