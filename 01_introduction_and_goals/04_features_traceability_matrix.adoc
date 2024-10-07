@@ -1,4 +1,4 @@
-=== Features Traceability Matrix (RTM)
+= Features Traceability Matrix (RTM)
 
 ////
 [NOTE]

@@ -6,12 +6,44 @@
 :toc-title: Table of Contents
 :sectnums:
 
-include::01_introduction_and_goals/index.adoc[]
+// increase to heading2
+:leveloffset: +1
+include::01_introduction_and_goals/00_executive_summary.adoc[]
+// increase to heading3
+:leveloffset: +1
+include::01_introduction_and_goals/01_stakeholders.adoc[]
+include::01_introduction_and_goals/02_requirements_overview.adoc[]
+include::01_introduction_and_goals/03_quality_goals.adoc[]
+include::01_introduction_and_goals/04_features_traceability_matrix.adoc[]
+include::01_introduction_and_goals/05_risks_tech-debt.adoc[]
 
+// decrease back to heading2
+:leveloffset: -1
 include::02_architecture/index.adoc[]
+// increase to heading3
+:leveloffset: +1
+include::02_architecture/01_system_context.adoc[]
+include::02_architecture/02_container_view.adoc[]
+include::02_architecture/03_component_view.adoc[]
+include::02_architecture/04_runtime_view.adoc[]
+include::02_architecture/05_deployment_view.adoc[]
 
-include::03_concepts/index.adoc[]
+// decrease back to heading2
+:leveloffset: -1
+include::03_concepts/00_cross_cutting_concepts.adoc[]
+// increase to heading3
+:leveloffset: +1
+include::03_concepts/01_security_concepts.adoc[]
+include::03_concepts/02_performance_optimisation.adoc[]
+include::03_concepts/03_monitoring_logging.adoc[]
+include::03_concepts/04_data_protection.adoc[]
 
-include::04_architecture_decisions/index.adoc[]
+include::04_architecture_decisions/00_architecture_decisions.adoc[]
+// increase to heading3
+:leveloffset: +1
+include::04_architecture_decisions/adr-001-my-project.adoc[]
 
-// include::05_risks_and_technical_debt/index.adoc[]
+// decrease back to heading2
+:leveloffset: -1
+// decrease back to heading1
+:leveloffset: -1

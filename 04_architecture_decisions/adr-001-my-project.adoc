@@ -1,4 +1,4 @@
-=== ADR 001: Description of the Architecture Decision Record
+= ADR 001: Description of the Architecture Decision Record
 
 *Status*: Proposed;Reviewed;Accepted;Rejected
 

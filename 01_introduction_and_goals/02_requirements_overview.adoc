@@ -1,5 +1,5 @@
 // tag::architect[]
-=== Requirements Overview
+= Requirements Overview
 
 ////
 [NOTE]

@@ -1,4 +1,4 @@
-== Architecture Decisions
+= Architecture Decisions
 
 :1: https://learn.microsoft.com/en-us/azure/well-architected/architect-role/architecture-decision-record
 :2: https://adr.github.io
@@ -55,4 +55,3 @@ Process of creating and using ADRs:
 
 By following this process, teams can maintain a clear, versioned history of important decisions throughout a project's lifecycle, improving communication, understanding, and long-term maintainability of the software architecture.
 
-include::adr-001-my-project.adoc[]
