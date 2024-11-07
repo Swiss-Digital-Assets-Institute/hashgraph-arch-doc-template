@@ -12,9 +12,9 @@ Most of these requirements will probably be from an ADR so there is an example o
 [cols="1,8", id=requirements, options="header"]
 |===
 |ID | Requirement
-|[[R1]]R1 | The system shall use Web3 Auth for authentication
-|[[R2]]R2 | Hedera Smart Contract Service will be used for smart-contract deployments
-|R3 a|
+|[[RE1]]R1 | The system shall use Web3 Auth for authentication
+|[[RE2]]R2 | Hedera Smart Contract Service will be used for smart-contract deployments
+|[[RE3]]R3 a|
 include::../04_architecture_decisions/adr-001-my-project.adoc[]
 |===
 
