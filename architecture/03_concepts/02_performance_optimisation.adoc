@@ -1,4 +1,5 @@
-=== Performance Optimization
+= Performance Optimization
+
 [NOTE]
 ====
 Add any performance enhancing design decisions. Here are a few examples

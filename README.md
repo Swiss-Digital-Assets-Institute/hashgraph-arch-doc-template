@@ -83,6 +83,43 @@ docker-compose -f docker-compose-arch.yml up --no-recreate build-pdf
 
 This will generate `index.pdf` in the `docs/architecture/build-pdf` directory.
 
+### Publishing to Confluence:
+
+We use Confluence Publisher to automatically publish the AsciiDoc documentation to a Confluence space.
+
+You can manually publish the documentation to Confluence by running the following command:
+```sh
+docker-compose -f docker-compose-arch.yml run publish-confluence
+```
+
+### Required Confluence Environment Variables
+
+Before running the publish confluence command, ensure the following environment variables are set:
+
+- `ROOT_CONFLUENCE_URL`: Base URL for your Confluence instance.
+- `USERNAME`: Confluence username (or API token for cloud instances).
+- `PASSWORD`: Confluence password (or API token for cloud instances).
+- `SPACE_KEY`: Confluence space key where the documentation will be published.
+- `ANCESTOR_ID`: ID of the parent (ancestor) page under which the documentation will be published.
+- `PAGE_TITLE_PREFIX`: (Optional) Prefix for page titles.
+- `PAGE_TITLE_SUFFIX`: (Optional) Suffix for page titles.
+- `PROJECT_VERSION`: Version of the project, included in the version message.
+
+### Example Environment Setup
+
+```sh
+export ROOT_CONFLUENCE_URL="https://your-confluence-instance.com"
+export USERNAME="your-username"
+export PASSWORD="your-api-token"
+export SPACE_KEY="YOUR_SPACE_KEY"
+export ANCESTOR_ID="12345678"
+export PAGE_TITLE_PREFIX="Draft - "
+export PAGE_TITLE_SUFFIX=" - Architecture"
+export PROJECT_VERSION="0.0.1"
+
+docker-compose -f docker-compose-arch.yml run publish-confluence
+```
+
 ## Customization
 
 The `docker-compose-arch.yml` file is set up to use the `asciidoctor/docker-asciidoctor` image, which includes support for diagrams. If you need to customize the build process:

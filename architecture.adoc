@@ -1,0 +1,60 @@
+= Managed Transaction Gateway service: Architecture Overview
+:doctype: book
+:revnumber: 1.1
+:revdate: {localdate}
+:toc:
+:toc-title: Table of Contents
+:sectnums:
+
+// increase to heading2
+:leveloffset: +1
+include::architecture/01_introduction_and_goals/00_executive_summary.adoc[]
+// increase to heading3
+:leveloffset: +1
+include::architecture/01_introduction_and_goals/01_stakeholders.adoc[]
+
+include::architecture/01_introduction_and_goals/02_requirements_overview.adoc[]
+
+include::architecture/01_introduction_and_goals/03_quality_goals.adoc[]
+
+include::architecture/01_introduction_and_goals/04_features_traceability_matrix.adoc[]
+
+include::architecture/01_introduction_and_goals/05_risks_tech-debt.adoc[]
+
+// decrease back to heading2
+:leveloffset: -1
+include::architecture/02_architecture/index.adoc[]
+// increase to heading3
+:leveloffset: +1
+include::architecture/02_architecture/01_system_context.adoc[]
+
+include::architecture/02_architecture/02_container_view.adoc[]
+
+include::architecture/02_architecture/03_component_view.adoc[]
+
+include::architecture/02_architecture/04_runtime_view.adoc[]
+
+include::architecture/02_architecture/05_deployment_view.adoc[]
+
+// decrease back to heading2
+:leveloffset: -1
+include::architecture/03_concepts/00_cross_cutting_concepts.adoc[]
+// increase to heading3
+:leveloffset: +1
+include::architecture/03_concepts/01_security_concepts.adoc[]
+
+include::architecture/03_concepts/02_performance_optimisation.adoc[]
+
+include::architecture/03_concepts/03_monitoring_logging.adoc[]
+
+include::architecture/03_concepts/04_data_protection.adoc[]
+
+include::architecture/04_architecture_decisions/00_architecture_decisions.adoc[]
+// increase to heading3
+:leveloffset: +1
+include::architecture/04_architecture_decisions/adr-001-my-project.adoc[]
+
+// decrease back to heading2
+:leveloffset: -1
+// decrease back to heading1
+:leveloffset: -1
