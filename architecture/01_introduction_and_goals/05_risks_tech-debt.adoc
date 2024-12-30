@@ -10,14 +10,9 @@ risks, impact assessment and remediation list. There will be a Project Risk list
 |===
 |ID |Severity |Description |Remediation
 |[[RI1]]R1
-|High
-|The expected performance might make the system fail commercially
-|Conduct research early on to find an efficient solution
-
-|[[RI2]]R2
-|Low
-|Users might lose their keys and not be able to login
-|Integrate with a recovery tool such as link:https://derecalliance.org/[DeRec]
+|High/Medium/Low
+|TBD
+|TBD
 
 |===
 // end::developer[]

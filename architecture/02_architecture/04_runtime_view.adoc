@@ -8,3 +8,45 @@ This document should contain Sequence diagrams to show the sequence of events to
 
 It can contain any other details (class diagrams, ERM and more) which would help a developer understand the system. The deployment is described in the deployment view
 ====
+
+=== Creating a new policy
+[TIP]
+====
+This diagram shows how the systems interact when a request comes in to deploy a new policy process
+====
+
+// tag::architect[]
+[plantuml, target=images/deployment, format=svg]
+----
+@startuml
+title Deploy a policy
+
+participant Requester
+participant APIGateway
+participant AuthService
+participant Queue
+participant PolicyOrchestrator
+participant BPMNEngine
+
+
+Requester->APIGateway:Calls the endpoint to create a new \n policy process by handing over bpmn file
+APIGateway->AuthService: Checks if req signature belongs to DID with correct role
+APIGateway<--AuthService: HTTP Status
+APIGateway-->Requester: HTTP Status
+
+alt if HTTP Status is 200 OK
+APIGateway -> Queue: Add message of type "NewPolicy"
+Queue --> APIGateway: HTTP Status
+
+loop every x sec
+PolicyOrchestrator -> Queue: Fetches new message(s)
+PolicyOrchestrator <-- Queue: Message(s)
+end
+
+alt if new message(s)
+PolicyOrchestrator -> BPMNEngine: Create the new process via POST /engine-rest/deployment/create
+PolicyOrchestrator <-- BPMNEngine: HTTP Status
+end
+end
+@enduml
+----

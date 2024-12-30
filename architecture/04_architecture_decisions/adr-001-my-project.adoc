@@ -1,15 +1,83 @@
-= ADR 001: Description of the Architecture Decision Record
+== ADR: Handling File Content in High-Frequency APIs
 
-*Status*: Proposed;Reviewed;Accepted;Rejected
+[cols="1, 1,2,3", id=stakeholders, options="header"]
+|===
+|Version |Status |Next steps |Last updated
+|0.1 |Proposal |Do be discussed with architects |30.12.2024
+|===
 
-*Context*:
-[NOTE]
-Describe what the architecture proposal is about and why you believe it should be accepted
+=== Context
+High-frequency APIs that process file content must balance efficiency, scalability, and reliability. Processing entire files as part of the API request presents challenges, including:
 
-*Decision:*
-[NOTE]
-This should remain empty for the first version. In order to elicit a decision the ADR should be proposed in a PR so that a discussion can take place
+- **Increased Latency:** Large file uploads can slow down requests and consume significant bandwidth.
+- **Memory and Resource Usage:** Storing and processing large payloads in memory can strain resources during high traffic.
+- **Scalability Issues:** High request volumes combined with large files can overwhelm the system.
+- **Error Handling:** Interruptions during file uploads can lead to incomplete or corrupted data.
 
-*Consequences*:
-[NOTE]
-Once a decision has been made (the PR is ready to be merged), document the consequences of implementing this decision
+To address these challenges, various strategies exist for transmitting file content in API requests. Each approach has unique trade-offs in terms of performance, complexity, and usability.
+
+=== Options for Sending File Content
+
+==== Option 1: Inline File Content in API Request Body
+The file is sent as part of the request payload, typically encoded in Base64 or binary (e.g., multipart/form-data).
+
+**Pros:**
+- Simple to implement and widely supported by HTTP clients and servers.
+- Self-contained: The API request includes both metadata and file content.
+- No additional storage infrastructure required.
+
+**Cons:**
+- Higher payload size when using Base64 (increases file size by ~33%).
+- Memory-intensive for large files, as the entire payload must be held in memory.
+- May lead to higher latency for large files.
+- Limited scalability for very high request rates.
+
+==== Option 2: Chunked Uploads
+The file is split into smaller chunks, each sent as a separate request. The server reassembles the file.
+
+**Pros:**
+- Reduces memory usage by processing smaller chunks incrementally.
+- Enables retrying individual chunks on failure, improving reliability.
+- Scalable for large files without requiring a large memory footprint.
+
+**Cons:**
+- More complex implementation on both client and server sides.
+- Increased number of requests for a single file upload.
+- Additional overhead to reassemble chunks on the server.
+
+==== Option 3: Direct Upload to External Storage
+The client uploads the file directly to a storage service (e.g., AWS S3) using a pre-signed URL. The API receives a reference to the file for further processing.
+
+**Pros:**
+- Offloads file handling to a dedicated storage service, reducing API server load.
+- High scalability as the API does not process or store the file directly.
+- Supports large files without impacting API performance.
+- Built-in reliability features (e.g., S3's multipart uploads).
+
+**Cons:**
+- Requires integration with external storage services.
+- Clients must implement support for pre-signed URL workflows.
+- Increased latency if the client needs to perform multiple requests (e.g., get pre-signed URL, upload file, notify API).
+
+==== Option 4: Streaming Uploads
+The file is sent as a continuous stream, enabling real-time processing on the server.
+
+**Pros:**
+- Reduces memory usage by processing data incrementally.
+- Suitable for real-time applications or very large files.
+- No need for temporary file storage on the server.
+
+**Cons:**
+- Requires server and client support for streaming protocols (e.g., HTTP/2, WebSockets).
+- More complex error handling (e.g., managing partial streams).
+- Difficult to scale for extremely high request rates.
+
+=== Decision
+After evaluating the options, the recommended approach depends on the specific requirements of the system:
+
+1. For **simple use cases** with small to medium file sizes, use **Option 1 (Inline File Content)**.
+2. For **reliability and large files**, implement **Option 2 (Chunked Uploads)**.
+3. For **high scalability and offloaded processing**, adopt **Option 3 (Direct Upload to External Storage)**.
+4. For **real-time processing needs**, use **Option 4 (Streaming Uploads)**.
+
+The final implementation may combine multiple approaches to cater to diverse use cases while ensuring performance and scalability.

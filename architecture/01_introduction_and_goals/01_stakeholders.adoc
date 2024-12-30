@@ -1,13 +1,13 @@
-= Stakeholders
+=== Stakeholders
 
 [cols="1,2,3", id=stakeholders, options="header"]
 |===
 |Role |Contact |Expectations
-
-|CFO |First Lastname |Viable pricing model and revenue generation
-|Head of Engineering |First Lastname  |Technical feasibility and performance
-|Product Owner |First Lastname  |Feature completeness and user satisfaction
-|Project Manager |First Lastname  |On-time delivery within budget
-|Tech Lead |First Lastname  |Code quality and technical implementation
-|Architect |First Lastname  |System design and architectural decisions
+|CTO |Mikael Björn |Overall product alignment with company strategy
+|CFO |Reto Tschanz |Viable pricing model and revenue generation
+|Head of Engineering |Micha Roon |Technical feasibility and performance
+|Product Owner | TBD | Feature completeness and user satisfaction
+|Project Manager | TBD |On-time delivery within budget
+|Tech Lead | TBD |Code quality and technical implementation
+|Architect | TBD |System design and architectural decisions
 |===

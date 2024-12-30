@@ -9,13 +9,34 @@ Most of these requirements will probably be from an ADR so there is an example o
 ====
 ////
 
-[cols="1,8", id=requirements, options="header"]
-|===
-|ID | Requirement
-|[[RE1]]R1 | The system shall use Web3 Auth for authentication
-|[[RE2]]R2 | Hedera Smart Contract Service will be used for smart-contract deployments
-|[[RE3]]R3 a|
-include::../04_architecture_decisions/adr-001-my-project.adoc[]
-|===
+[cols="1,2,3,3,1", id=requirements, options="header"]
+|=====================================================================================
+| ID| As a... | I want... | So that...| Focus
+| R1| Project developer | to be able to register my environmental project on the Hedera network | it is transparent and tamper-proof. | Immutable Records
+| R2| Project developer | to have control over who can access and update project data on the ledger | only authorized parties can make changes. | Access Control
+| R3| Project developer | to see a real-time record of all project activities and data stored on the Hedera ledger | I can track progress and ensure data integrity. | Real-Time Auditing
+| R4| Data provider | to securely upload measurement data from various sources (sensors, satellites, etc.) to the Hedera network | it can be verified and integrated with the project record. | Secure Data Upload
+| R5| Data provider | to be able to specify the type and format of the data I am uploading | it can be accurately interpreted by the system. | Data Standardization
+| R6| Data provider | to be able to control who can access the raw data I upload| only authorized users can view it. | Data Privacy
+| R7| Verifier| to be able to access a detailed record of all project activities and data on the Hedera ledger | I can independently verify the accuracy of the reported information. | Data Traceability
+| R8| Verifier| to be able to see the provenance of all data points (source, timestamp, etc.)| I can assess the reliability of the data. | Provenance Tracking
+| R9| Verifier| to be able to collaborate with other verifiers on the Hedera network to share information and expertise | we can conduct more comprehensive verification processes.| Collaborative Tools
+| R10 | Stakeholder | to be able to easily access project information on the Hedera network| I can gain transparency into the project's impact.| User Accessibility
+| R11 | Regulator | to be able to verify the legitimacy of carbon offsets issued by projects on the Hedera network| I can ensure the integrity of the carbon market. | Carbon Credit Verification
+| R12 | * | the system to support the integration with various data sources used for environmental monitoring (e.g., sensors, satellites, drones) | data collection can be automated and efficient. | Data Source Integration
+| R13 | * | the system to be able to handle different data formats and units of measurement (e.g., temperature in Celsius or Fahrenheit) | data from diverse sources can be seamlessly integrated. | Data Interoperability
+| R14 | * | the system to include data validation tools to identify and flag any anomalies or inconsistencies in the data| data quality is ensured. | Data Validation Tools
+| R16 | Data provider | to be able to cryptographically sign the data I upload to the Hedera network | its authenticity and integrity can be verified. | Data Authentication
+| R17 | Verifier| to be able to audit the history of all data changes on the Hedera ledger, including who made the changes and when| I can ensure the data has not been tampered with. | Audit Logging
+| R18 | Project developer | the system to support open data standards (e.g., ISO 14064, Verra methodologies)| my project data can be easily shared and compared with other projects.| Standards Compliance
+| R19 | Data provider | the system to provide clear guidelines and templates for data formatting | I can easily prepare my data for upload. | Data Formatting Guidelines
+| R21 | Project developer | a user-friendly interface for managing my project data and interacting with the Hedera network | I can easily use the system without extensive technical expertise. | Usability Design
+| R22 | Verifier| the system to provide clear visualizations and reports of project data| I can quickly understand the project's performance and identify any potential issues. | Data Visualization
+| R23 | Stakeholder | the project information on the Hedera network to be easily accessible through a web interface or API | I can stay informed about the project's progress.| API/Web Access
+| R24 | Project developer | to be able to define custom measurement parameters and methodologies for my project| the system can accommodate the specific requirements of my project type.| Customizable Measurements
+| R25 | Data provider | the system to support real-time data streaming from sensors | continuous monitoring can be implemented.| Real-Time Streaming
+| R26 | Verifier| the system to provide tools for statistical analysis of the measurement data | I can assess the accuracy and reliability of the data. | Statistical Analysis Tools
+| R27 | Project developer | to be able to create customized policy with ease | I can reflect the business processes the policy is based on in a digitized form | Usability
+|=====================================================================================
 
 // end::architect[]

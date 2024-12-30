@@ -9,6 +9,19 @@ This section provides a high-level overview of the project goals and key require
 
 // tag::manager[]
 == Executive Summary
-The Managed Transaction Gateway provides a managed solution to interact with the Hedera network without the need to handle HBAR or pay fees directly. This service includes a Service Level Agreement (SLA) and an administration dashboard for Customers, along with a free implementation for Developers. Pricing is based on transaction volume to meet the specific needs of each customer and the terms of the purchased plan.
+The Enterprise Guardian Project aims to revolutionize sustainability-focused dMRV (decentralized Measurement, Reporting, and Verification) systems by concentrating exclusively on the "Measure" component. Recognizing that many organizations already have robust processes for Reporting and Verification, Enterprise Guardian focuses on delivering a streamlined, decentralized, and highly integrative solution for measurement.
+
+By leveraging Distributed Ledger Technology (DLT), Enterprise Guardian ensures secure, transparent, and tamper-proof data collection, offering significant advantages over traditional centralized systems. This decentralized approach empowers enterprises to integrate seamlessly with their existing infrastructure, enabling precise measurement while retaining flexibility for their unique reporting and verification needs. Additionally, the project supports interoperability by providing reliable and verifiable measurement data to enhance downstream processes.
+
+Enterprise Guardian is designed to:
+
+1. Enhance Transparency: Utilize DLT to create an immutable and decentralized record of measurement data, fostering trust and accountability.
+2. Simplify Integration: Provide an adaptable and user-friendly platform that can be easily incorporated into existing systems, reducing friction in adoption.
+3. Support Existing Frameworks: Complement the Reporting and Verification frameworks that organizations already have in place, rather than duplicating or disrupting them.
+4. Enable Scalability: Allow organizations to expand their sustainability initiatives without the burden of overhauling their current systems.
+
+The project aspires to become the cornerstone of decentralized measurement within the sustainability space, empowering enterprises to meet their environmental goals with accuracy, transparency, and efficiency.
+
+
 // end::manager[]
 

@@ -7,11 +7,25 @@ how will quality be measured in this project
 ////
 
 
-[cols="1,3,8", id=quality-goals, options="header"]
-|===
-|ID |Quality |Description
-|[[Q1]]Q1 |Performance |System responds within 1 second for 95% of requests
-|[[Q2]]Q2 |Security |Data encryption at rest and in transit, with regular security audits
-|[[Q3]]Q3 |Scalability |Support 10x growth in user base without major architectural changes
-|===
+[cols="1,2,4", id=quality-goals, options="header"]
+|=====================================================================================
+| Quality Goal ID | Term                  | Description
+| QG1             | Immutability          | Ensure all project data and activities are stored as immutable records to guarantee transparency and tamper-proof integrity.
+| QG2             | Access Control        | Implement robust mechanisms to restrict data access and updates to authorized users only.
+| QG3             | Real-Time Auditing    | Enable tracking of data changes and project progress in real time, ensuring accurate and up-to-date information.
+| QG4             | Data Authenticity     | Ensure uploaded data is cryptographically signed to validate its origin and prevent tampering.
+| QG5             | Data Standardization  | Support a consistent structure for data formats, ensuring compatibility and seamless integration with diverse sources.
+| QG6             | Data Privacy          | Provide secure access restrictions to maintain confidentiality of raw data.
+| QG7             | Traceability          | Track all data points with full provenance, including source, timestamps, and change history.
+| QG8             | Data Validation       | Implement tools to detect and flag anomalies or inconsistencies in the uploaded data for quality assurance.
+| QG9             | Standards Compliance  | Ensure compatibility with industry standards (e.g., ISO 14064, Verra methodologies) for interoperability and benchmarking.
+| QG10            | Data Integration      | Support integration with diverse environmental monitoring tools (e.g., sensors, satellites, drones) for efficient data collection.
+| QG11            | Real-Time Streaming   | Enable continuous data ingestion from monitoring tools to support real-time updates and analysis.
+| QG12            | Statistical Analysis  | Provide analytical tools to assess measurement accuracy and detect inconsistencies in data patterns.
+| QG13            | API Accessibility     | Deliver a robust API for seamless programmatic access to project data and system functionalities.
+| QG14            | Security Monitoring   | Notify project developers of unauthorized access or modification attempts to protect data integrity.
+| QG15            | Scalability           | Ensure the system can handle a growing number of projects, data sources, and users without degradation in performance.
+| QG16            | Performance Efficiency| Optimize data processing to minimize latency and ensure smooth real-time operations.
+| QG17            | Provenance Tracking   | Provide detailed metadata for all data entries, including source, transformations, and timestamps, for verification purposes.
+|=====================================================================================
 // end::developer[]
