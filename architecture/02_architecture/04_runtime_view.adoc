@@ -50,3 +50,45 @@ end
 end
 @enduml
 ----
+
+=== Pushing new data
+[TIP]
+====
+This diagram shows how the systems interact when a request comes in to push new data for a given policy.
+====
+
+// tag::architect[]
+[plantuml, target=images/deployment, format=svg]
+----
+@startuml
+title Push sensor data
+
+participant Requester
+participant APIGateway
+participant AuthService
+participant Queue
+participant DataOrchestrator
+participant BPMNEngine
+
+
+Requester->APIGateway:Calls the endpoint to push a \n new sensor data package
+APIGateway->AuthService: Checks if req signature belongs to DID with correct role
+APIGateway<--AuthService: HTTP Status
+APIGateway-->Requester: HTTP Status
+
+alt if HTTP Status is 200 OK
+APIGateway -> Queue: Add message of type "NewPolicy"
+Queue --> APIGateway: HTTP Status
+
+loop every x sec
+DataOrchestrator -> Queue: Fetches new message(s)
+DataOrchestrator <-- Queue: Message(s)
+end
+
+alt if new message(s)
+DataOrchestrator -> BPMNEngine: Create the new instance of the data processing process via POST POST /process-definition/key/{key}/start
+PolicyOrchestrator <-- BPMNEngine: HTTP Status
+end
+end
+@enduml
+----

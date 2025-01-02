@@ -1,0 +1,58 @@
+== ADR-002: Authentication in Camunda BPMN Process Integration
+
+[cols="1, 1,2,3", id=stakeholders, options="header"]
+|===
+|Version |Status |Next steps |Last updated
+|0.1 |Proposal |To be discussed with architects |02.01.2025
+|===
+
+=== Context
+In a system where requests are handed off to Camunda BPMN process instances for further processing, authentication plays a critical role in ensuring security, reliability, and scalability. Two main approaches exist for handling authentication:
+
+1. Perform all authentication upfront, before the request reaches the Camunda process.
+
+2. Perform minimal authentication upfront and handle most authentication tasks within the Camunda BPMN process itself.
+
+Each approach has distinct implications for security, complexity, and system performance.
+
+=== Options for Authentication Handling
+
+==== Option 1: All Authentication Before Starting the Camunda Process
+Authentication is fully performed by the software handling the incoming request before it starts the Camunda process instance.
+
+Pros: +
+- Simplified Camunda Processes: The BPMN workflows can focus entirely on business logic without handling security concerns. +
+- Centralized Authentication Logic: Easier to maintain and update security policies in a single location. +
+- Reduced Overhead: Eliminates the need for duplicating authentication logic within Camunda. +
+- Immediate Rejection: Invalid requests are filtered out early, reducing unnecessary processing and load on Camunda. +
+- Improved Auditing: A clear demarcation of authenticated requests simplifies logging and auditing. +
+
+Cons: +
+- Limited Flexibility: Changes to authentication logic require updates to the pre-Camunda handling code, which may introduce deployment dependencies. +
+- Potential Overhead for Simple Requests: All authentication checks are performed upfront, even if some checks may only be relevant deeper in the process. +
+- Increased Latency: Comprehensive upfront authentication can increase the time required to start the BPMN process. +
+
+==== Option 2: Minimal Authentication Before Starting the Camunda Process
+Basic authentication is performed upfront, while detailed authentication and authorization are handled within the Camunda BPMN process.
+
+Pros: +
+- Flexibility: Camunda workflows can dynamically adjust authentication based on the current state of the process. +
+Reduced Initial Latency: Minimal upfront authentication enables faster initiation of the BPMN process. +
+Decoupled Authentication Logic: Authentication and authorization can be tailored to specific steps within the workflow. +
+Context-Aware Security: The process instance can validate access rights specific to the stage and data involved. +
+
+Cons: +
+- Increased Complexity: BPMN processes become more complex as they must incorporate authentication and authorization logic. +
+- Higher Risk of Unauthorized Access: Without thorough upfront checks, unauthorized requests may consume system resources before being identified. +
+- Error Propagation: Authentication failures within the process may complicate error handling and require compensating transactions. +
+- Distributed Auditing: Tracking authentication events becomes more challenging when spread across multiple process steps.
+
+=== Decision
+After evaluating the options, the recommended approach depends on the specific requirements of the system:
+
+For systems with straightforward workflows and strict security requirements, adopt Option 1 (All Authentication Before Starting the Camunda Process).
+
+For systems with complex or dynamic workflows that require context-aware security, use Option 2 (Minimal Authentication Before Starting the Camunda Process).
+
+In practice, a hybrid approach may be ideal, combining upfront checks for baseline security (e.g., token validation) with additional, process-specific checks within the BPMN workflows. This balances performance, security, and flexibility while ensuring the system remains adaptable to changing requirements.
+

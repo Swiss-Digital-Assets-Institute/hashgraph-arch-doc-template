@@ -52,7 +52,7 @@ include::architecture/03_concepts/04_data_protection.adoc[]
 include::architecture/04_architecture_decisions/00_architecture_decisions.adoc[]
 // increase to heading3
 :leveloffset: +1
-include::architecture/04_architecture_decisions/adr-001-my-project.adoc[]
+include::architecture/04_architecture_decisions/adr-001.adoc[]
 
 // decrease back to heading2
 :leveloffset: -1
