@@ -87,7 +87,7 @@ end
 
 alt if new message(s)
 DataOrchestrator -> BPMNEngine: Create the new instance of the data processing process via POST POST /process-definition/key/{key}/start
-PolicyOrchestrator <-- BPMNEngine: HTTP Status
+DataOrchestrator <-- BPMNEngine: HTTP Status
 end
 end
 @enduml
