@@ -1,7 +1,8 @@
 = System Context
 
 [NOTE]
-This diagram shows the systems that are communicating and interacting within the scope of the Managed Transaction Gateway.
+This diagram shows the systems that are communicating and interacting within the scope of the Enterprise Guardian Platform. It shows the different systems and how they interact with each other. The diagram should be updated when new systems are added or removed from the platform.
+
 The example below gives a view on the different types of components
 
 // tag::architect[]
@@ -9,62 +10,38 @@ The example below gives a view on the different types of components
 ----
 
 @startuml
+!define C4_CONTEXT
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 
-LAYOUT_WITH_LEGEND()
+LAYOUT_TOP_DOWN()
 
-title System Context diagram for the Application
+title Enterprise Guardian System Context Diagram
 
-Person_Ext(technicalUser, "User who is not managed by Application", "Long description of what the user will try to achieve with the Application")
+Person_Ext(user, "User", "Carbon Data submitter")
+Person_Ext(Registery, "Registery", "Registery Authority")
+Person_Ext(sysadmin, "Sysadmin", "System admin from HGA")
 
-Enterprise_Boundary(c0, "THA") {
-Person(customer, "Customer", "A customer of THA that wants to use the Application and do some awesome stuff with it")
-Person(admin, "Admin", "A THA employee that serves as an admin and onboards customers.")
+System_Ext(workflow, "Enterprise Guardian Service", "Workflow Engine and Orchastrators, to manage and validate polices, schemes, data, and authuntication")
+System(guardiansystem, "Enterprise Guardian Blockchain", "Tracks agricultural produce through blockchain technology using Hedera Consensus Service")
+System_Ext(hcs, "Hedera Consensus Service", "Blockchain infrastructure for immutable event logging")
 
-System(frontend, "Application Frontend", "Allows users to interact with the application and the admins to manage it")
-System(backend, "Application Backend", "Implementation of the persistence layer and some of the features of the application")
-
-System_Ext(vault, "Hashicorp Vault", "The KMS of choice that holds the secrets of the application and can sign messages with private keys. Explain what it's used for")
-}
-
-System_Ext(node, "Hedera Hashgraph Node", "Hedera is the DLT network which the customer wants to interact with. The node serves as a gateway to the network.")
-
-System_Ext(hedera, "Hedera Hashgraph", "Hedera is a fully open source public distributed ledger that utilizes the fast, fair, and secure hashgraph consensus. Its network services include Solidity-based smart contracts, as well as native tokenization and consensus services used to build decentralized applications.")
-
-Rel(admin, frontend, "Uses to onboard new customers")
-Rel(customer, frontend, "Uses for visualized information")
-Rel(frontend, backend, "Requests actions or information")
-Rel(backend, frontend, "Returns responses to the requests")
-Rel(technicalUser, backend, "Sends REST requests and receives responses")
-Rel(backend, vault, "Requests to sign raw transaction payload")
-Rel(vault, backend, "Returns signed transaction payload")
-Rel(backend, node, "Hands over signed transaction payload")
-Rel(node, hedera, "Broadcasts transaction on the network")
-
+Rel(user, workflow, "Submit data")
+Rel(Registery, workflow, "Create policies, accounts, schemes")
+Rel(sysadmin, workflow, "Manage BE and tenants")
+Rel(workflow, guardiansystem, "Logs data on HCS")
+Rel(guardiansystem, hcs, "Logs events securely")
 @enduml
-
 ----
 
-== Admin User
+== SysAdmin User
 [NOTE]
-Description of what the Admin User does, which features they use and what for. Any feature listed here should be described in the <<../01_introduction_and_goals/04_features_traceability_matrix.adoc#ftm, features>> list
+The SysAdmin is responsible for maintaining all system components, creating and managing tenants, and inviting/creating registry accounts within the Guardian system. This role is typically assigned to HGA staff.
 
-== Customer
+== User
 [NOTE]
-Same as for the other user
+The User represents the end entity or organization that utilizes the Guardian system to submit their carbon data. This is the primary user of the system.
 
-== Application Frontend
+== Registry Authority
 [NOTE]
-This container represents any way to interact with the system. This can include a Web App, Mobile App, Native App and definitely includes the wallet. Here we describe what the UI enables, who will use it and what <<../01_introduction_and_goals/04_features_traceability_matrix.adoc#ftm, features>> are made available through that container. These should be listed even if they're the same as for the users.
-
-An alternative to listing the features here, is to reference the <<03_component_view.adoc#components, components view>> to the specific section for the container
-
-== Application Backend
-[NOTE]
-Overview of the backend and links to the relevant <<05_deployment_view.adoc#_deployment_view, deployment>> and ADR
-
-== External containers
-[NOTE]
-The external containers should be described as to why they are used, with a reference to the relevant ADR
-
+The Registry Authority is responsible for creating, designing, and providing policies, schemes, accounts, and users. They are the primary designer of all policies within the workflow.
 
