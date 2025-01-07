@@ -6,7 +6,7 @@ This diagram shows the systems that are communicating and interacting within the
 The example below gives a view on the different types of components
 
 // tag::architect[]
-[plantuml,target=images/level1,format=svg]
+[plantuml,target=images/deployment,format=svg]
 ----
 
 @startuml
@@ -30,18 +30,37 @@ Rel(Registery, workflow, "Create policies, accounts, schemes")
 Rel(sysadmin, workflow, "Manage BE and tenants")
 Rel(workflow, guardiansystem, "Logs data on HCS")
 Rel(guardiansystem, hcs, "Logs events securely")
+
 @enduml
 ----
 
 == SysAdmin User
-[NOTE]
-The SysAdmin is responsible for maintaining all system components, creating and managing tenants, and inviting/creating registry accounts within the Guardian system. This role is typically assigned to HGA staff.
+[NOTE] The SysAdmin User acts as the operational backbone of the Enterprise Guardian System, ensuring uninterrupted functionality and governance. Their responsibilities include:
 
-== User
-[NOTE]
-The User represents the end entity or organization that utilizes the Guardian system to submit their carbon data. This is the primary user of the system.
+- Managing tenants, including onboarding, access control, and lifecycle operations.
+- Supervising backend workflows to ensure all processes function according to designed policies and security protocols.
+- Inviting or creating registry accounts and establishing role-based permissions across the system.
+
+The SysAdmin is integral to maintaining the integrity and scalability of the platform, ensuring a seamless experience for all stakeholders.
+
+== Carbon Data Submitter (User)
+[NOTE] The User, typically an entity or individual, represents the Carbon Data Submitter, tasked with:
+
+- Uploading and submitting carbon-related data, including emissions, offsets, and reduction activities.
+- Ensuring compliance with defined schemes and policies by the Registry Authority.
+- Acting as the primary contributor of input data, enabling traceability and reporting within the platform.
+
+This role is pivotal for driving data flow into the system, forming the basis for all downstream workflows and blockchain operations.
 
 == Registry Authority
+
+[NOTE] The Registry Authority is the policy maker and system designer for the platform. Their key functions include:
+
+- Designing and implementing policies, schemes, and frameworks to guide data submissions.
+- Creating and maintaining account structures to ensure compliance with regulatory and platform rules.
+- Providing support and oversight for users to help navigate policy complexities.
+
+As the custodians of compliance, Registry Authorities ensure the platform's functionality aligns with its governance mandates.
 [NOTE]
 The Registry Authority is responsible for creating, designing, and providing policies, schemes, accounts, and users. They are the primary designer of all policies within the workflow.
 
