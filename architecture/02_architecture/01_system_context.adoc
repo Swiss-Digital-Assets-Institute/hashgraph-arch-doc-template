@@ -52,6 +52,7 @@ The SysAdmin is integral to maintaining the integrity and scalability of the pla
 
 This role is pivotal for driving data flow into the system, forming the basis for all downstream workflows and blockchain operations.
 
+
 == Registry Authority
 
 [NOTE] The Registry Authority is the policy maker and system designer for the platform. Their key functions include:
