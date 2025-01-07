@@ -62,6 +62,7 @@ This role is pivotal for driving data flow into the system, forming the basis fo
 - Providing support and oversight for users to help navigate policy complexities.
 
 As the custodians of compliance, Registry Authorities ensure the platform's functionality aligns with its governance mandates.
+
 [NOTE]
 The Registry Authority is responsible for creating, designing, and providing policies, schemes, accounts, and users. They are the primary designer of all policies within the workflow.
 

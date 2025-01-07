@@ -1,53 +1,47 @@
 === Container View
 
-////
-
-[NOTE]
-====
-This diagram shows the single container images and their interactions as they are used by the System under Development.
-====
-////
+The Entriprise Guardian System  is composed of six key containers that work together
+to enable secure and transparent data registery on the Hedera Consensus Service (HCS).
 
 [plantuml, target=images/level2, format=svg]
 ----
 @startuml
+!define C4_CONTAINER
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
-LAYOUT_WITH_LEGEND()
+title Enterprise Guardian System - Container Diagram
 
-title Container diagram for the Application
+LAYOUT_TOP_DOWN()
 
-Person_Ext(technicalUser, "User who is not managed by Application", "Long description of what the user will try to achieve with the Application")
-
-Enterprise_Boundary(c0, "THA") {
-Person(customer, "Customer", "A customer of THA that wants to use the Application and do some awesome stuff with it")
-Person(admin, "Admin", "A THA employee that serves as an admin and onboards customers.")
-
-System_Boundary(application, "Application") {
-    Container(webApp, "Web Application", "JavaScript, React", "Provides all functionality to customers via their web browser")
-    Container(apiGateway, "API Gateway", "Node.js, Express", "Handles API requests and routes them to appropriate microservices")
-    Container(customerService, "Customer Service", "Java, Spring Boot", "Manages customer data and onboarding process")
-    Container(transactionService, "Transaction Service", "Go", "Handles creation and processing of transactions")
-    Container(database, "Database", "PostgreSQL", "Stores customer data, transaction history, and application state")
+Person_Ext(saas, "Enterprise Guardian Service", "External UI for system users")
+System_Boundary(traceability, "Enterprise Guardian System") {
+    Container(api_gateway, "API Gateway", "NestJS", "Handles all incoming requests and routes events")
+    Container(Coreorc, "Orchastration Service", "", "Orchastration starter services for Policy, Scheme and transactions runtime.")
+    Container(storage, "Storage Service", "Centralized DB Storage", "Stores and log all system interactions. Store and retrieves event data")
+    Container(authsrv, "Auth Service", "", "Securely manages DID, cryptographic keys, permissions, and secrets")
+    Container(workflowsrv, "Workflow Service", "Camunda Workflow Engine", "Excute Workflow as per predefined Polices based on BPMN")
+    Container(workersrv, "Data Workers Services", "IPFS and DLT data managment workrs", "Excute data operations from and to IPFS and DLT.")
 }
 
-System_Ext(vault, "Hashicorp Vault", "The KMS of choice that holds the secrets of the application and can sign messages with private keys")
+System_Ext(hcs, "Hedera Consensus Service", "Blockchain infrastructure for immutable event logging")
 
-}
-System_Ext(node, "Hedera Hashgraph Node", "Gateway to the Hedera network")
-System_Ext(hedera, "Hedera Hashgraph", "Distributed ledger for building decentralized applications")
-Rel(admin, webApp, "Uses to onboard new customers", "HTTPS")
-Rel(customer, webApp, "Uses for visualized information", "HTTPS")
-Rel(technicalUser, apiGateway, "Sends REST requests", "HTTPS")
-Rel(webApp, apiGateway, "Makes API calls to", "JSON/HTTPS")
-Rel(apiGateway, customerService, "Routes customer-related requests to", "JSON/HTTPS")
-Rel(apiGateway, transactionService, "Routes transaction-related requests to", "JSON/HTTPS")
-Rel(customerService, database, "Reads from and writes to", "SQL/TCP")
-Rel(transactionService, database, "Reads from and writes to", "SQL/TCP")
-Rel(transactionService, vault, "Requests to sign transaction payload", "HTTPS")
-Rel(vault, transactionService, "Returns signed transaction payload", "HTTPS")
-Rel(transactionService, node, "Submits signed transaction", "gRPC")
-Rel(node, hedera, "Broadcasts transaction", "Proprietary protocol")
+Rel(saas, api_gateway, "Sends API calls")
+Rel(storage, workersrv, "Provides content references")
+
+Rel(api_gateway, Coreorc, "Data submited")
+Rel(Coreorc, workflowsrv, "Data submited")
+Rel(workflowsrv, api_gateway, "Fetch message broker data")
+Rel(workflowsrv, workersrv, "initiate data storage operations")
+
+
+Rel(Coreorc, api_gateway, "Place data in message broker")
+
+Rel(workersrv, storage, "Stores event data")
+Rel(storage, hcs, "Publishes event hashes")
+
+Rel(api_gateway, authsrv, "Validate Tokens and Crypto keys")
+Rel(authsrv, api_gateway, "Provides Tokens and Crypto keys")
+
 @enduml
 
 ----
