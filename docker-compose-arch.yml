@@ -11,7 +11,7 @@ services:
       - "asciidoctor-diagram"
       - "-a"
       - "toc2"
-      - "/documents/index.adoc"
+      - "architecture.adoc"
       - "-o"
       - "/documents/build-html/index.html"
 
@@ -23,6 +23,6 @@ services:
       - "asciidoctor-pdf"
       - "-r"
       - "asciidoctor-diagram"
-      - "/documents/index.adoc"
+      - "architecture.adoc"
       - "-o"
       - "/documents/build-pdf/index.pdf"

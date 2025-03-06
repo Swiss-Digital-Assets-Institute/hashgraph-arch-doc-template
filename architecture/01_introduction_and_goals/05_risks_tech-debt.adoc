@@ -1,12 +1,12 @@
 // tag::developer[]
-= Quality Goals
+= Risks and Technical Debt
 
 ////
 [NOTE]
 risks, impact assessment and remediation list. There will be a Project Risk list which will be kept by the PM, probably in Confluence. These risks are only the ones impacting code and which can be remediated by the development team or have a direct impact on the development team
 ////
 
-[cols="1,1,4,4", id=quality-goals, options="header"]
+[cols="1,1,4,4", id=Risks-and-Technical-Debt, options="header"]
 |===
 |ID |Severity |Description |Remediation
 |[[RI1]]R1
