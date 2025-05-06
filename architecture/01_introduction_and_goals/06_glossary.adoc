@@ -6,7 +6,7 @@ The glossary explains terminology and allows to reference acronyms easily. Copy 
 ////
 
 
-[cols="1,8", id=stakeholders, options="header"]
+[cols="1,8", id=glossary, options="header"]
 |===
 |Term |Description
 

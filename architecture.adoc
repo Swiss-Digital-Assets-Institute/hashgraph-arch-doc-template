@@ -21,6 +21,8 @@ include::architecture/01_introduction_and_goals/04_features_traceability_matrix.
 
 include::architecture/01_introduction_and_goals/05_risks_tech-debt.adoc[]
 
+include::architecture/01_introduction_and_goals/06_glossary.adoc[]
+
 // decrease back to heading2
 :leveloffset: -1
 include::architecture/02_architecture/index.adoc[]
