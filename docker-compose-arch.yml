@@ -26,3 +26,34 @@ services:
       - "architecture.adoc"
       - "-o"
       - "/documents/build-pdf/index.pdf"
+
+  publish-confluence:
+    image: "confluencepublisher/confluence-publisher:0.10.0"
+    platform: linux/amd64
+    pull_policy: "if_not_present"
+    working_dir: /var/asciidoc-root-folder
+    environment:
+      - ROOT_CONFLUENCE_URL=${ROOT_CONFLUENCE_URL:-https://hashgraph.atlassian.net/wiki}
+      - USERNAME=${USERNAME}
+      - PASSWORD=${PASSWORD}
+      - SPACE_KEY=${SPACE_KEY:-xtp}
+      - ANCESTOR_ID=${ANCESTOR_ID:-148340738}
+      - PAGE_TITLE_PREFIX=${PAGE_TITLE_PREFIX:-}
+      - PAGE_TITLE_SUFFIX=${PAGE_TITLE_SUFFIX:- -draft-v1}
+      - PUBLISHING_STRATEGY=REPLACE_ANCESTOR
+      - ORPHAN_REMOVAL_STRATEGY=REMOVE_ORPHANS
+      - VERSION_MESSAGE=Version ${PROJECT_VERSION:-0.0.1}
+    volumes:
+      - ./:/var/asciidoc-root-folder
+      - ./images:/var/asciidoc-root-folder/images
+    command: >
+      java -jar /app/confluence-publisher.jar
+      -s /var/asciidoc-root-folder/index.adoc
+      -u ${ROOT_CONFLUENCE_URL:-https://hashgraph.atlassian.net/wiki}
+      -a ${USERNAME}
+      -p ${PASSWORD}
+      -k ${SPACE_KEY:-xtp}
+      -l ${ANCESTOR_ID:-148340738}
+      --publishingStrategy REPLACE_ANCESTOR
+      --orphanRemovalStrategy REMOVE_ORPHANS
+      --versionMessage "Version 0.0.1"
